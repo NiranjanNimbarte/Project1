@@ -1,0 +1,20 @@
+/* Enter your custom styles here */
+tr[data-mydata = "Deleted"] {
+	background-color : #FF7A7A !important;
+}
+tr[data-mydata = "Active"] {
+	background-color : #D0FFD0 !important;
+}
+tr[data-mydata = "Repeated"] {
+	background-color : #FFCCCC !important;
+}
+
+#__xmlview0--idDelPlanBtn{
+margin-left: 17%;
+    margin-top: 15%;
+}
+
+#__xmlview0--idDelPlanBtn{
+margin-left: 17%;
+    margin-top: 15%;
+}

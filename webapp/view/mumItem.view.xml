@@ -1,0 +1,148 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" controllerName="ZMUM_ITEM.controller.mumItem" displayBlock="true">
+	<App>
+		<pages>
+			<Page title="{i18n>appName}" titleLevel="H1">
+				<content>
+					<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" editable="true" layout="ResponsiveGridLayout" id="__form0" width="100%">
+						<sap.ui.layout.form:content>
+							<HBox width="100%" direction="Column" alignItems="Start">
+								<items>
+									<Label text="Maint. Plan sort field"/>
+									<ComboBox items="{/items}" id="idSortFieldCombo" change="handleSortFieldChange" selectionChange="handleSortFieldChange">
+										<core:Item key="{Maint Plan sort field}" text="{Maint Plan sort field}"/>
+									</ComboBox>
+								</items>
+							</HBox>
+							<HBox width="100%" direction="Column" alignItems="Start">
+								<items>
+									<Label text="Maintenance Plan"/>
+									<ComboBox items="{/items}" id="idMaintPlanCombo" enabled="false" showSecondaryValues= "true" change="handleMaintPlanChange" selectionChange="handleMaintPlanChange">
+										<core:ListItem key="{Maint Plan}" text="{Maint Plan Description}" additionalText="{Maint Plan}"/>
+										<!--<ObjectIdentifier title="{Maint Plan}" text="{Maint Plan Description}"/>-->
+									</ComboBox>
+								</items>
+							</HBox>
+							<HBox width="100%" direction="Column" alignItems="Start">
+								<items>
+									<Label text="Building"/>
+									<ComboBox items="{/items}" enabled="false" id="idBuildingCombo" showSecondaryValues= "true">
+										<core:ListItem key="{Building No}" text="{Building}" additionalText="{Building No}"/>
+									</ComboBox>
+								</items>
+							</HBox>
+							<HBox width="100%" direction="Column" alignItems="Start">
+								<items>
+									<Label text="Room"/>
+									<ComboBox items="{/items}" enabled="false" id="idRoomCombo" showSecondaryValues= "true">
+										<core:Item key="{Room}" text="{Room}"/>
+									</ComboBox>
+								</items>
+							</HBox>
+						
+							<HBox width="100%" direction="Column" alignItems="Start">
+								<items>
+									<Label text="Status"/>
+									<ComboBox>
+										<items>
+											<core:ListItem key="All" text="All"/>
+											<core:ListItem key="Active" text="Active"/>
+											<core:ListItem key="Repeated" text="Repeated"/>
+											<core:ListItem key="Deleted" text="Deleted"/>
+											<!--<core:ListItem text="List Item 2" key="item2" id="__item2"/>-->
+											<!--<core:ListItem text="List Item 3" key="item3" id="__item3"/>-->
+										</items>
+									</ComboBox>
+								</items>
+							</HBox>
+							<HBox width="100%" id="__hbox4" alignContent="End" alignItems="Baseline">
+							<items>
+							    <Button text="Delete Plan" width="130px" id="idDelPlanBtn" icon="sap-icon://delete" type="Reject"/>
+							</items>
+							</HBox>
+						</sap.ui.layout.form:content>
+					</sap.ui.layout.form:SimpleForm>
+					<Bar id="__bar2">
+						<contentRight>
+							<SearchField liveChange="handleSearch" search="handleSearch" width="25%"/>
+							<Button text="Add" width="100px" id="__button0" activeIcon="sap-icon://add" type="Accept" icon="sap-icon://add"/>
+							<Button text="Delete" width="100px" id="__button1" activeIcon="sap-icon://delete" type="Reject" icon="sap-icon://delete"/>
+							<Button width="100px" id="__button2" icon="sap-icon://download" type="Emphasized" press="onExportCsv"/>
+						</contentRight>
+					<contentLeft>
+					   
+					</contentLeft>
+					</Bar>
+					<ScrollContainer height="100%" width="100%" horizontal="false" vertical="true">
+						<Table id="idProductsTable" mode="MultiSelect" inset="false" items="{ path: '/items', sorter: { path: 'Maint Plan sort field' } }">
+							<columns>
+								<Column>
+									<Text text="Equipment"/>
+								</Column>
+								<Column hAlign="Center" width="12em" minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Maintenance Item"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Maintenance Plan "/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Building"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+									<Text text="Room"/>
+								</Column>
+								<!--<Column hAlign="End">-->
+								<!--	<Text text="Unit Price"/>-->
+								<!--</Column>-->
+							</columns>
+							<items id="idOrderList">
+								<ColumnListItem vAlign="Middle" type="Navigation">
+									<customData>
+										<core:CustomData key="mydata" value="{Status of an Equipment}" writeToDom="true"/>
+									</customData>
+									<cells>
+										<ObjectIdentifier title="{Maint Plan sort field}"/>
+										<ObjectIdentifier title="{Maint Item Description}" text="{Maint Item}"/>
+										<ObjectIdentifier title="{Maint Plan Description}" text="{Maint Plan}"/>
+										<ObjectIdentifier title="{Building}" text="{Building No}"/>
+										<ObjectIdentifier title="{Room}" />
+										
+										<!--<Input value="{Quantity}" type="{Text}" description="{UoM}" fieldWidth="{60%}"/>-->
+										<!--<ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}"/>-->
+										<!--<ObjectNumber-->
+										<!--	number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
+										<!--	unit="{CurrencyCode}"/>-->
+									</cells>
+								</ColumnListItem>
+							</items>
+							<customData>
+								<core:CustomData key="w5g.dt.editable" value="true" id="__data17"/>
+							</customData>
+						</Table>
+					</ScrollContainer>
+					<!--<VBox class="sapUiSmallMargin">-->
+					<!--	<f:SimpleForm id="SimpleFormChange480_Trial" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="4"-->
+					<!--		labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2"-->
+					<!--		singleContainerFullSize="false">-->
+					<!--		<f:content>-->
+					<!--			<core:Title/>-->
+					<!--			<Label text="Label 1" id="__label0"/>-->
+					<!--			<ComboBox items="{/items}">-->
+					<!--				<core:Item key="{key}" text="{text}"/>-->
+					<!--			</ComboBox>-->
+					<!--			<core:Title/>-->
+					<!--			<Label text="Label 2" id="__label1"/>-->
+					<!--			<ComboBox items="{/items}">-->
+					<!--				<items>-->
+					<!--					<core:ListItem key="{key}" text="{text}"/>-->
+					<!--					<core:ListItem text="List Item 2" key="item2" id="__item2"/>-->
+					<!--					<core:ListItem text="List Item 3" key="item3" id="__item3"/>-->
+					<!--				</items>-->
+					<!--			</ComboBox>-->
+					<!--		</f:content>-->
+					<!--	</f:SimpleForm>-->
+					<!--</VBox>-->
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
